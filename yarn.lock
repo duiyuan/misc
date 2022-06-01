@@ -223,10 +223,10 @@
     "@commitlint/cli" "^16.2.3"
     "@commitlint/config-conventional" "^16.2.1"
 
-"@duiyuan/eslint-config@^0.1.3":
-  version "0.1.3"
-  resolved "https://registry.npmjs.org/@duiyuan/eslint-config/-/eslint-config-0.1.3.tgz#d5084e86cb1827075e0a53e08fc23a60a99aacbb"
-  integrity sha512-nqv5oNUPBTaXGRkMOE1bWrtkAmpAqb2B2Dnljw1tvpWA6D+8gBUk0lsdqzD8DeRQedethydaEwBw3P7ZL1xwKQ==
+"@duiyuan/eslint-config@^0.1.4":
+  version "0.1.4"
+  resolved "https://registry.npmmirror.com/@duiyuan/eslint-config/-/eslint-config-0.1.4.tgz#bc4d2b9c4b23bcadf2cf1cc1102d11ab7d0bae49"
+  integrity sha512-oAwSbf4zVOqdQ0/z93e/ytpF6riGjaY/gy/wWwlcCvPZDp3xhvxslpJV5BwtT8w2AV+g8fwWahZ01GAIszET0A==
   dependencies:
     "@typescript-eslint/eslint-plugin" "^5.18.0"
     "@typescript-eslint/parser" "^5.18.0"
