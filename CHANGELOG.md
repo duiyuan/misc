@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.5](https://github.com/duiyuan/misc/compare/v0.0.4...v0.0.5) (2022-06-01)
+
+
+### Features
+
+* rename hexToU8 ([5ec81a2](https://github.com/duiyuan/misc/commit/5ec81a2b45d2f26a5d9e2acf575f4d6f6464e24f))
+
 ### 0.0.4 (2022-06-01)
 
 
