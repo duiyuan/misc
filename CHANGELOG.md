@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.8](https://github.com/duiyuan/misc/compare/v0.0.7...v0.0.8) (2022-06-01)
+
+
+### Features
+
+* add base64ToArraybuffer ([495812e](https://github.com/duiyuan/misc/commit/495812ea2e9938d2e7c6bc0aa00789940480cb14))
+
 ### [0.0.7](https://github.com/duiyuan/misc/compare/v0.0.6...v0.0.7) (2022-06-01)
 
 ### [0.0.6](https://github.com/duiyuan/misc/compare/v0.0.5...v0.0.6) (2022-06-01)
