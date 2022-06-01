@@ -30,7 +30,7 @@ export function isDioxideAddress(address: string, alg: 'ed25519'): boolean {
     const mergedBuffer = concat(publicKey, errorCorrectingCodeBuffer)
     const encodedMergeBuffer = base32Encode(mergedBuffer, 'Crockford')
 
-    return encodedMergeBuffer === address
+    return encodedMergeBuffer === address.toUpperCase()
   } catch (error) {
     return false
   }
