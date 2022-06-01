@@ -18,6 +18,12 @@ export function padStart(num: any, len = 2, ch = '0'): string {
   return output
 }
 
+/**
+ * format time
+ * @param {(number | string)} time
+ * @param {string} [formatStr='YYYY-MM-DD']
+ * @return {*}  {string}
+ */
 export function formatTime(
   time: number | string,
   formatStr = 'YYYY-MM-DD'
