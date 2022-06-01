@@ -1,3 +1,8 @@
+/**
+ * cutZero
+ * @param {string}
+ * @return {string}
+ */
 export function cutZeros(v: string) {
   if (!/^[0-9.]+$/g.test(v)) return '0'
   while (v.includes('.') && (v.endsWith('.') || v.endsWith('0'))) {

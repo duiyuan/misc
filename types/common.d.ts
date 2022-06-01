@@ -1,3 +1,3 @@
-interface AnyKV<T = any> {
+interface KeyValue<T = any> {
   [prop: string]: T
 }

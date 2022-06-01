@@ -1,6 +1,6 @@
-import _ from '../src/index'
+import { string, buffer } from '../src/index'
 
-describe('event-emiter test suite', () => {
+describe('To do', () => {
   it('To do', () => {
     expect(true).toBeTruthy()
   })
