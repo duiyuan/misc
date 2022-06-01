@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.9](https://github.com/duiyuan/misc/compare/v0.0.8...v0.0.9) (2022-06-01)
+
+
+### Features
+
+* support ed25519 valid address ([512e37a](https://github.com/duiyuan/misc/commit/512e37ad116a23012742e3c5bef7e021b0adc5b9))
+
 ### [0.0.8](https://github.com/duiyuan/misc/compare/v0.0.7...v0.0.8) (2022-06-01)
 
 
