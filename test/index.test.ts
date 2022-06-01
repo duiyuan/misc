@@ -1,4 +1,4 @@
-import { dataview } from '../src/index'
+import { dataview, address } from '../src/index'
 
 describe('DataView', () => {
   it('Uint8Array To Number', () => {
@@ -15,3 +15,21 @@ describe('DataView', () => {
     )
   })
 })
+
+// describe('Address', () => {
+//   it('isDioxideAddress: address end with `ed25519` algorithm', () => {
+//     const addr =
+//       'm04adrp625hw66pg98xtzcwvyth7qd39rst7k96crcj5phmte7b26jj7bc:ed25519'
+//     expect(address.isDioxideAddress(addr, 'ed25519')).toBe(true)
+//   })
+
+//   it("isDioxideAddress: address don't end with `ed25519` algorithm", () => {
+//     const addr = 'm04adrp625hw66pg98xtzcwvyth7qd39rst7k96crcj5phmte7b26jj7bc'
+//     expect(address.isDioxideAddress(addr, 'ed25519')).toBe(true)
+//   })
+
+//   it('isDioxideAddress: non-ed25519 address', () => {
+//     const addr = 'm04adrp625hw66pg98xtzcwvyth7qd39rst7k96crcj5phmte7b26c'
+//     expect(address.isDioxideAddress(addr, 'ed25519')).toBe(false)
+//   })
+// })
