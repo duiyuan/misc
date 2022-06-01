@@ -1,5 +1,9 @@
-// Merge ArrayBuffers
-export function concat(...args: ArrayBuffer[]) {
+/**
+ * Join multiple Uint8Array to one
+ * @param {ArrayBuffer[]} args
+ * @return {*}  {Uint8Array}
+ */
+export function concat(...args: ArrayBuffer[]): Uint8Array {
   let length = 0
   const units = args.map((arg) => {
     return new Uint8Array(arg)
@@ -21,11 +25,11 @@ export function concat(...args: ArrayBuffer[]) {
   return mergedArray
 }
 
-export function stringToU8Array(message: string): Uint8Array {
+export function stringToU8(message: string): Uint8Array {
   return new TextEncoder().encode(message)
 }
 
-export function u8ArrayToString(content: Uint8Array) {
+export function u8ToString(content: Uint8Array) {
   return new TextDecoder('utf-8').decode(content)
 }
 
@@ -36,22 +40,24 @@ export function u8ToHex(content: Uint8Array): string {
   )
 }
 
-export function hexToU8(hexString: string): Uint8Array {
-  hexString = hexString.replace(/^0x/, '')
+/**
+ * Transform hex-string to Uint8Array
+ * @param {string} hex
+ * @return {*}  {Uint8Array}
+ */
+export function hexToU8(hex: string): Uint8Array {
+  hex = hex.replace(/^0x/, '')
 
-  if (hexString.length % 2 != 0) {
-    console.log(
-      'WARNING: expecting an even number of characters in the hexString'
-    )
+  if (hex.length % 2 != 0) {
+    throw new Error('expecting an even number of characters in the hex-string')
   }
 
-  // check for some non-hex characters
-  const bad = hexString.match(/[G-Z\s]/i)
+  const bad = hex.match(/[G-Z\s]/i)
   if (bad) {
-    console.log('WARNING: found non-hex characters', bad)
+    throw new Error('found non-hex characters' + bad)
   }
 
-  const pairs = hexString.match(/[\dA-F]{2}/gi)
+  const pairs = hex.match(/[\dA-F]{2}/gi)
   const integers = pairs?.map(function (s) {
     return parseInt(s, 16)
   })
@@ -64,12 +70,11 @@ export function hexToU8(hexString: string): Uint8Array {
 }
 
 /**
- *
  * Transfer base64 string to uint8 array
  * @param {string} base64
  * @return {*}
  */
-export function base64ToUint8Array(base64: string) {
+export function base64ToU8(base64: string) {
   const binary_string = atob(base64)
   const len = binary_string.length
   const bytes = new Uint8Array(len)
