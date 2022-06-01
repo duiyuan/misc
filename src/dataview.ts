@@ -1,3 +1,4 @@
+import { decode as b64ToBuffer, encode } from 'base64-arraybuffer'
 /**
  * Join multiple Uint8Array to one
  * @param {ArrayBuffer[]} args
@@ -25,14 +26,29 @@ export function concat(...args: ArrayBuffer[]): Uint8Array {
   return mergedArray
 }
 
+/**
+ * Turn string to uint8array
+ * @param {string} message
+ * @return {*}  {Uint8Array}
+ */
 export function stringToU8(message: string): Uint8Array {
   return new TextEncoder().encode(message)
 }
 
+/**
+ * Turn Uint8array to string
+ * @param {string} message
+ * @return {*}  {Uint8Array}
+ */
 export function u8ToString(content: Uint8Array) {
   return new TextDecoder('utf-8').decode(content)
 }
 
+/**
+ * Turn uint8array to hex-string
+ * @param {string} message
+ * @return {*}  {Uint8Array}
+ */
 export function u8ToHex(content: Uint8Array): string {
   return content.reduce(
     (str, byte) => str + byte.toString(16).padStart(2, '0'),
@@ -82,6 +98,15 @@ export function base64ToU8(base64: string) {
     bytes[i] = binary_string.charCodeAt(i)
   }
   return bytes
+}
+
+/**
+ * change base64-string to arraybuffer
+ * @param {string} content base64-string
+ * @return {*} arraybuffer
+ */
+export function base64ToArraybuffer(content: string): ArrayBuffer {
+  return b64ToBuffer(content)
 }
 
 /**
