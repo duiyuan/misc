@@ -1,4 +1,4 @@
-name: Release
+name: Npm Publish CI
 on:
   push:
     branches: [main]
