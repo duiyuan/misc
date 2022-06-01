@@ -38,11 +38,9 @@ export function u8ToHex(content: Uint8Array): string {
   )
 }
 
-export function hexStrToU8(hexString: string): Uint8Array {
-  // remove the leading 0x
+export function hexToU8(hexString: string): Uint8Array {
   hexString = hexString.replace(/^0x/, '')
 
-  // ensure even number of characters
   if (hexString.length % 2 != 0) {
     console.log(
       'WARNING: expecting an even number of characters in the hexString'
@@ -55,10 +53,7 @@ export function hexStrToU8(hexString: string): Uint8Array {
     console.log('WARNING: found non-hex characters', bad)
   }
 
-  // split the string into pairs of octets
   const pairs = hexString.match(/[\dA-F]{2}/gi)
-
-  // convert the octets to integers
   const integers = pairs?.map(function (s) {
     return parseInt(s, 16)
   })
