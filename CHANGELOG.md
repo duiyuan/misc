@@ -2,6 +2,8 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.2](https://github.com/duiyuan/misc/compare/v0.1.1...v0.1.2) (2022-06-02)
+
 ### [0.1.1](https://github.com/duiyuan/misc/compare/v0.0.9...v0.1.1) (2022-06-01)
 
 ### [0.0.9](https://github.com/duiyuan/misc/compare/v0.0.8...v0.0.9) (2022-06-01)
