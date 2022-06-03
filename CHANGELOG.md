@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.3](https://github.com/duiyuan/misc/compare/v0.1.2...v0.1.3) (2022-06-03)
+
+
+### Features
+
+* add object.shakeRedundantField ([f77f4b7](https://github.com/duiyuan/misc/commit/f77f4b7c27e19b652a4f20b7cd40c9a58c034934))
+
 ### [0.1.2](https://github.com/duiyuan/misc/compare/v0.1.1...v0.1.2) (2022-06-02)
 
 ### [0.1.1](https://github.com/duiyuan/misc/compare/v0.0.9...v0.1.1) (2022-06-01)
