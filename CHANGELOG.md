@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.4](https://github.com/duiyuan/misc/compare/v0.1.3...v0.1.4) (2022-06-06)
+
+
+### Features
+
+* address add addressToShard fn ([2d6a6cb](https://github.com/duiyuan/misc/commit/2d6a6cb8689ee8e13d158e197860a5d178525262))
+
+
+### Bug Fixes
+
+* build support es6 iterator ([0fbb8b3](https://github.com/duiyuan/misc/commit/0fbb8b34685724a2504224cad9cd42ad641cc319))
+
 ### [0.1.3](https://github.com/duiyuan/misc/compare/v0.1.2...v0.1.3) (2022-06-03)
 
 
