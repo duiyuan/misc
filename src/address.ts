@@ -42,11 +42,12 @@ export function isDioxideAddress(address: string, alg: 'ed25519'): boolean {
  * @param shardOrder
  * @returns shard
  */
-
- export const addressToShard = (address: string, shardOrder: number): number => {
+export const addressToShard = (address: string, shardOrder: number): number => {
   const colonIdx = address.lastIndexOf(':')
-  if (colonIdx == -1) throw 'invalid address format'
-  const unit8Array = new Uint8Array(base32Decode(address.substring(0, colonIdx), 'Crockford'))
+  if (colonIdx === -1) throw 'invalid address format'
+  const unit8Array = new Uint8Array(
+    base32Decode(address.substring(0, colonIdx), 'Crockford')
+  )
   const decoded = String.fromCharCode.apply(null, [...unit8Array])
   if (!decoded || decoded.length != 36) throw 'invalid address format'
   const dwords = new Uint32Array(9)

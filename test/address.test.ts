@@ -24,4 +24,8 @@ describe('Address to Shard', () => {
   it('get shardIndex with address and shardOrder', () => {
     expect(address.addressToShard(addr, shardOrder)).toEqual(2)
   })
+
+  it('get shardIndex with error address', () => {
+    expect(() => address.addressToShard('error', shardOrder)).toThrowError('invalid address format')
+  })
 })
