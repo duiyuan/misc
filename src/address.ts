@@ -48,7 +48,7 @@ export const addressToShard = (address: string, shardOrder: number): number => {
   const unit8Array = new Uint8Array(
     base32Decode(address.substring(0, colonIdx), 'Crockford')
   )
-  const decoded = String.fromCharCode.apply(null, [...unit8Array])
+  const decoded = String.fromCharCode.apply(null, Array.from(unit8Array))
   if (!decoded || decoded.length != 36) throw 'invalid address format'
   const dwords = new Uint32Array(9)
   for (let i = 0; i < 9; i++) {
@@ -60,4 +60,38 @@ export const addressToShard = (address: string, shardOrder: number): number => {
   const shardDword = dwords[0] ^ dwords[7] ^ dwords[4]
   const shardMask = ~(0xffffffff << shardOrder)
   return shardDword & shardMask
+}
+
+export type Variant = 'RFC3548' | 'RFC4648' | 'RFC4648-HEX' | 'Crockford'
+export type DioxideAddrSignatur =
+  | 'ed25519'
+  | 'sm2'
+  | 'ethereum'
+  | 'dapp'
+  | 'token'
+  | 'nft'
+
+export const getAddressType = (
+  addr: string,
+  variant: Variant = 'Crockford'
+): DioxideAddrSignatur | null => {
+  addr = addr.includes(':') ? addr.split(':')[0] : addr
+  const u8: Uint8Array = new Uint8Array(base32Decode(addr, variant))
+  const byte: number = u8[32]
+  const type = byte & 0xf
+  switch (type) {
+    case 1:
+      return 'ethereum'
+    case 2:
+      return 'sm2'
+    case 3:
+      return 'ed25519'
+    case 8:
+      return 'dapp'
+    case 9:
+      return 'token'
+    case 10:
+      return 'nft'
+  }
+  return null
 }
