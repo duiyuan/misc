@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.5](https://github.com/duiyuan/misc/compare/v0.1.4...v0.1.5) (2022-09-22)
+
+
+### Features
+
+* getaddress type ([ccf943d](https://github.com/duiyuan/misc/commit/ccf943dfc277ab89bc20f15f3e42646c913e5a72))
+
 ### [0.1.4](https://github.com/duiyuan/misc/compare/v0.1.3...v0.1.4) (2022-06-06)
 
 
