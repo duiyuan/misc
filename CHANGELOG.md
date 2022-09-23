@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.6](https://github.com/duiyuan/misc/compare/v0.1.5...v0.1.6) (2022-09-23)
+
+
+### Features
+
+* impl getTruelyAddress ([a386791](https://github.com/duiyuan/misc/commit/a3867918dc7c7138c91ddeb76ac2fcf04f52ddc2))
+
 ### [0.1.5](https://github.com/duiyuan/misc/compare/v0.1.4...v0.1.5) (2022-09-22)
 
 
