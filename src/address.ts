@@ -95,3 +95,9 @@ export const getAddressType = (
   }
   return null
 }
+
+export const getTruelyAddress = (addr: string): string => {
+  addr = addr.includes(':') ? addr.split(':')[0] : addr
+  const type = getAddressType(addr)
+  return !type ? addr : [addr, type].join(':')
+}

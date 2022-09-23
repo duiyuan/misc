@@ -37,16 +37,24 @@ describe('Address', () => {
   it('address.getAddressTyp: should be invalid address', () => {
     expect(address.getAddressType(addr.invalid)).toBe(null)
   })
+
+  it('address.getTruelyAddress: should return address end with true alg', () => {
+    const value = addr.token + ':token'
+    expect(address.getTruelyAddress(addr.token)).toBe(value)
+  })
 })
 
 describe('Address to Shard', () => {
-  const addr = '7gtgnayn3wbr3w4jjz5vrg9jeeg9mp58d3sydbd5grkg09heqzmrj2xk98:token'
+  const addr =
+    '7gtgnayn3wbr3w4jjz5vrg9jeeg9mp58d3sydbd5grkg09heqzmrj2xk98:token'
   const shardOrder = 2
   it('get shardIndex with address and shardOrder', () => {
     expect(address.addressToShard(addr, shardOrder)).toEqual(2)
   })
 
   it('get shardIndex with error address', () => {
-    expect(() => address.addressToShard('error', shardOrder)).toThrowError('invalid address format')
+    expect(() => address.addressToShard('error', shardOrder)).toThrowError(
+      'invalid address format'
+    )
   })
 })
