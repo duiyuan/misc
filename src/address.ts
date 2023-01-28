@@ -4,6 +4,42 @@ import base32Decode from 'base32-decode'
 
 import { concat } from './dataview'
 
+export type Variant = 'RFC3548' | 'RFC4648' | 'RFC4648-HEX' | 'Crockford'
+export type DioxideAddrSignatur =
+  | 'ed25519'
+  | 'sm2'
+  | 'ethereum'
+  | 'dapp'
+  | 'token'
+  | 'nft'
+
+export enum AlgType {
+  'ethereum' = 1,
+  'sm2' = 2,
+  'ed25519' = 3,
+  'dapp' = 8,
+  'token' = 9,
+  'nft' = 10,
+}
+
+export const algToEnumValMapping = {
+  ed25519: 3,
+  sm2: 2,
+  ethereum: 1,
+  dapp: 8,
+  token: 9,
+  nft: 10,
+}
+
+const valToAlgMapping: any = {
+  3: 'ed25519',
+  2: 'sm2',
+  1: 'ethereum',
+  8: 'dapp',
+  9: 'token',
+  10: 'nft',
+}
+
 /**
  * whether the address is generate by dioxide or not
  * @param {string} address
@@ -62,42 +98,74 @@ export const addressToShard = (address: string, shardOrder: number): number => {
   return shardDword & shardMask
 }
 
-export type Variant = 'RFC3548' | 'RFC4648' | 'RFC4648-HEX' | 'Crockford'
-export type DioxideAddrSignatur =
-  | 'ed25519'
-  | 'sm2'
-  | 'ethereum'
-  | 'dapp'
-  | 'token'
-  | 'nft'
-
 export const getAddressType = (
   addr: string,
   variant: Variant = 'Crockford'
 ): DioxideAddrSignatur | null => {
+  const type = getAddressEnum(addr, variant)
+  const alg = valToAlgMapping[type]
+  if (typeof alg !== 'undefined') {
+    return alg
+  }
+  return null
+}
+
+export const getAddressEnum = (
+  addr: string,
+  variant: Variant = 'Crockford'
+): number => {
   addr = addr.includes(':') ? addr.split(':')[0] : addr
   const u8: Uint8Array = new Uint8Array(base32Decode(addr, variant))
   const byte: number = u8[32]
-  const type = byte & 0xf
-  switch (type) {
-    case 1:
-      return 'ethereum'
-    case 2:
-      return 'sm2'
-    case 3:
-      return 'ed25519'
-    case 8:
-      return 'dapp'
-    case 9:
-      return 'token'
-    case 10:
-      return 'nft'
-  }
-  return null
+  return byte & 0xf
 }
 
 export const getTruelyAddress = (addr: string): string => {
   addr = addr.includes(':') ? addr.split(':')[0] : addr
   const type = getAddressType(addr)
   return !type ? addr : [addr, type].join(':')
+}
+
+export const checkAddrByType = (params: {
+  addr: string
+}): {
+  result: boolean
+  type?: DioxideAddrSignatur | null
+  enumValue?: number
+  err?: string
+} => {
+  try {
+    const { addr } = params
+
+    const address = addr.toLocaleLowerCase().replace(/:\w+$/, '')
+    const addrU8 = new Uint8Array(base32Decode(address, 'Crockford'))
+    const algValue = getAddressEnum(addr)
+    const algType = getAddressType(addr)
+    if (algValue === null) {
+      return {
+        result: false,
+        err: "Can't deduce alg id",
+      }
+    }
+    const publicKey = addrU8.slice(0, 32)
+    let errorCorrectingCode = crc32c.buf(publicKey, algValue)
+    errorCorrectingCode = (errorCorrectingCode & 0xfffffff0) | algValue
+    errorCorrectingCode = errorCorrectingCode >>> 0
+
+    const buffer = new Int32Array([errorCorrectingCode]).buffer
+    const errorCorrectingCodeBuffer = new Uint8Array(buffer)
+
+    const mergedBuffer = concat(publicKey, errorCorrectingCodeBuffer)
+    const encodedMergeBuffer = base32Encode(mergedBuffer, 'Crockford')
+    return {
+      result: encodedMergeBuffer === address.toUpperCase(),
+      enumValue: algValue,
+      type: algType,
+    }
+  } catch (ex: any) {
+    return {
+      result: false,
+      err: ex.toString(),
+    }
+  }
 }
