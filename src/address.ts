@@ -157,11 +157,16 @@ export const checkAddrByType = (params: {
 
     const mergedBuffer = concat(publicKey, errorCorrectingCodeBuffer)
     const encodedMergeBuffer = base32Encode(mergedBuffer, 'Crockford')
-    return {
-      result: encodedMergeBuffer === address.toUpperCase(),
-      enumValue: algValue,
-      type: algType,
-    }
+    const ok = encodedMergeBuffer === address.toUpperCase()
+    return ok
+      ? {
+          result: ok,
+          enumValue: algValue,
+          type: algType,
+        }
+      : {
+          result: ok,
+        }
   } catch (ex: any) {
     return {
       result: false,
