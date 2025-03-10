@@ -1,4 +1,4 @@
-import { decode as b64ToBuffer, encode } from 'base64-arraybuffer'
+import { decode, encode } from 'base64-arraybuffer'
 /**
  * Join multiple Uint8Array to one
  * @param {ArrayBuffer[]} args
@@ -101,12 +101,33 @@ export function base64ToU8(base64: string) {
 }
 
 /**
+ * Transfer uint8array to base64 string
+ * @param {string} base64
+ * @return {*}
+ */
+
+export function u8ToBase64(u: Uint8Array): string {
+  return encode(u)
+}
+
+export function hexToBase64(msg: string) {
+  const u8 = hexToU8(msg)
+  return u8ToBase64(u8)
+}
+
+export function base64ToHex(msg: string) {
+  const buff = decode(msg)
+  const u8 = new Uint8Array(buff)
+  return u8ToHex(u8)
+}
+
+/**
  * change base64-string to arraybuffer
  * @param {string} content base64-string
  * @return {*} arraybuffer
  */
 export function base64ToArraybuffer(content: string): ArrayBuffer {
-  return b64ToBuffer(content)
+  return decode(content)
 }
 
 /**
