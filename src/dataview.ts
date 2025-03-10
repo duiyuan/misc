@@ -1,4 +1,4 @@
-import { decode as b64ToBuffer, encode } from 'base64-arraybuffer'
+import { decode, encode } from 'base64-arraybuffer'
 /**
  * Join multiple Uint8Array to one
  * @param {ArrayBuffer[]} args
@@ -90,14 +90,29 @@ export function hexToU8(hex: string): Uint8Array {
  * @param {string} base64
  * @return {*}
  */
-export function base64ToU8(base64: string) {
-  const binary_string = atob(base64)
-  const len = binary_string.length
-  const bytes = new Uint8Array(len)
-  for (let i = 0; i < len; i += 1) {
-    bytes[i] = binary_string.charCodeAt(i)
-  }
-  return bytes
+export function base64ToU8(base64: string): Uint8Array {
+  return new Uint8Array(decode(base64))
+}
+
+/**
+ * Transfer uint8array to base64 string
+ * @param {string} base64
+ * @return {*}
+ */
+
+export function u8ToBase64(u: Uint8Array): string {
+  return encode(u)
+}
+
+export function hexToBase64(msg: string) {
+  const u8 = hexToU8(msg)
+  return u8ToBase64(u8)
+}
+
+export function base64ToHex(msg: string) {
+  const buff = decode(msg)
+  const u8 = new Uint8Array(buff)
+  return u8ToHex(u8)
 }
 
 /**
@@ -106,7 +121,7 @@ export function base64ToU8(base64: string) {
  * @return {*} arraybuffer
  */
 export function base64ToArraybuffer(content: string): ArrayBuffer {
-  return b64ToBuffer(content)
+  return decode(content)
 }
 
 /**
