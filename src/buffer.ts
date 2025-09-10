@@ -18,7 +18,7 @@ export async function makeBlobToArrayBuffer(
     const blobChanged = blob.slice(0, blob.size, contentType || '')
     const reader = new FileReader()
     reader.onload = () => {
-      resolve(reader.result as Uint8Array)
+      resolve(reader.result as any)
     }
     reader.readAsArrayBuffer(blobChanged)
   })

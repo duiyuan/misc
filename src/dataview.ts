@@ -4,7 +4,7 @@ import { decode, encode } from 'base64-arraybuffer'
  * @param {ArrayBuffer[]} args
  * @return {*}  {Uint8Array}
  */
-export function concat(...args: ArrayBuffer[]): Uint8Array {
+export function concat(...args: (ArrayBuffer | Uint8Array)[]): Uint8Array {
   let length = 0
   const units = args.map((arg) => {
     return new Uint8Array(arg)
@@ -99,9 +99,8 @@ export function base64ToU8(base64: string): Uint8Array {
  * @param {string} base64
  * @return {*}
  */
-
 export function u8ToBase64(u: Uint8Array): string {
-  return encode(u)
+  return encode(u.slice().buffer)
 }
 
 export function hexToBase64(msg: string) {
